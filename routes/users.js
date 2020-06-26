@@ -52,10 +52,7 @@ router.post(
           res.json({ token });
         }
       );
-    } catch (err) {
-      console.log(err.message);
-      res.status(500).send('Server Error');
-    }
+    } catch (err) {}
   }
 );
 
