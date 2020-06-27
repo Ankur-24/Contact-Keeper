@@ -7,13 +7,13 @@ const Register = props => {
   const authContext = useContext(AuthContext);
 
   const { setAlert } = alertContext;
-
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {
       props.history.push('/');
     }
+
     if (error === 'User already exists') {
       setAlert(error, 'danger');
       clearErrors();
@@ -27,14 +27,17 @@ const Register = props => {
     password: '',
     password2: '',
   });
+
   const { name, email, password, password2 } = user;
+
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
+
   const onSubmit = e => {
     e.preventDefault();
     if (name === '' || email === '' || password === '') {
-      setAlert('Please Enter All the Fields', 'danger');
+      setAlert('Please enter all fields', 'danger');
     } else if (password !== password2) {
-      setAlert('Password Do not Match', 'danger');
+      setAlert('Passwords do not match', 'danger');
     } else {
       register({
         name,
@@ -43,6 +46,7 @@ const Register = props => {
       });
     }
   };
+
   return (
     <div className='form-container'>
       <h1>
